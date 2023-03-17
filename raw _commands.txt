@@ -1,0 +1,101 @@
+    1  sudo apt-get update
+    2  sudo apt-get upgrade
+    3  curl -O https://bootstrap.pypa.io/get-pip.py
+    4  python3 get-pip.py --user
+    5  export PATH=LOCAL_PATH:$PATH
+    6  source ~/.profile
+    7  pip install dvc
+    8  mkdir dvc_Project
+    9  cd dvc_Project/
+   10  python3 -m venv .env
+   11  sudo apt-get install python3-venv
+   12  python3 -m venv dvcENV .
+   13  source dvcENV/bin/activate
+   14  dvc -version
+   15  git --v
+   16  git init
+   17  git branch -m main
+   18  git branch
+   19  git config --global user.email "email"
+   20  dvc init
+   21  mkdir src
+   22  cd src
+   23  vi prepare.py
+   24  vi params.yaml
+   25  pwd
+   26  mv /home/ubuntu/dvc_Project/src/params.yaml /home/ubuntu/dvc_Project/
+   27  cd ..
+   28  ls
+   29  cd src
+   30  ls
+   31  cd ..
+   32  pip install pyyaml scikit-learn pandas
+   33  mkdir data
+   34  dvc run -n prepare -p prepare.categories -d src/prepare.py -o data/prepared python3 src/prepare.py
+   35  git status
+   36  git add data/ dvc.lock dvc.yaml params.yaml
+   37  git status
+   38  ls
+   39  vi dvc.yaml 
+   40  ls data
+   41  ls data/prepared/
+   42  dvc dag
+   43  vi dvc.lock 
+   44  vi src/featurize.py
+   45  dvc run -n featurize -d src/featurize.py -d data/prepared -o data/features python3 src/featurize.py data/prepared data/features
+   46  vi dvc.lock 
+   47  vi dvc.yaml
+   48  dvc dag
+   49  vi params.yaml 
+   50  ls
+   51  vi src/train.py
+   52  dvc run -n train -p train.alpha -d src/train.py -d data/features -o model.pkl python3 src/train.py data/features model.pkl
+   53  git status
+   54  vi src/evaluate.py
+   55  dvc metrics show
+   56  git status
+   57  git add data/.gitignore dvc.lock dvc.yaml params.yaml 
+   58  git status
+   59  git commit -m "committed upto train.py"
+   60  git add plots.json scores.json src/
+   61  git status
+   62  git commit -m "param:exp: alpha=0.1"
+   63  vi params.yaml 
+   64  dvc repro
+   65  dvc params diff
+   66  git status
+   67  dvc metrics diff
+   68  ls
+   69  vi plots.json 
+   70  dvc plots show -y precision -x recall plots.json
+   71  ls
+   72  cd dvc_plots/
+   73  ls
+   74  vi index.html 
+   75  cd ..
+   76  dvc plots diff --targets plots.json -y precision
+   77  git status
+   78  git add dvc.lock params.yaml plots.json scores.json dvc_plots/ .gitignore 
+   79  git commit -m "commit with all plots"
+   80  cd ~/.ssh
+   81  cat id_rsa.pub
+   82  cd
+   83  cd ..
+   84  cd ~
+   85  cd dvc_Project/
+   86  git remote add origin git@github.com:Vaibhav-Ahuja1/dvc-project1.git
+   87  git remote -v
+   88  git branch
+   89  git push -u origin main
+   90  git fetch
+   91  git push -u origin main
+   92  git status
+   93  git branch
+   94  git push
+   95  git push --set-upstream origin main
+   96  git branch -m master
+   97  git branch
+   98  git push --set-upstream origin master
+   99  git branch
+  100  cd dvc_Project/
+  101  history
