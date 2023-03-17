@@ -43,10 +43,10 @@ stages:
       size: 830
     params:
       params.yaml:
-        train.alpha: 0.7
+        train.alpha: 0.9
     outs:
     - path: model.pkl
-      md5: 4d514addabe5e5b89a02c39fdcabd3ba
+      md5: aa20656781d4499867864089d95110f3
       size: 982958
   evaluate:
     cmd: python3 src/evaluate.py model.pkl data/features scores.json plots.json
@@ -56,15 +56,15 @@ stages:
       size: 481545670
       nfiles: 2
     - path: model.pkl
-      md5: 4d514addabe5e5b89a02c39fdcabd3ba
+      md5: aa20656781d4499867864089d95110f3
       size: 982958
     - path: src/evaluate.py
       md5: 11d9dabde94952ff57dd205ba12b440c
       size: 1352
     outs:
     - path: plots.json
-      md5: c0298350610912a814a21dcdc26792b3
-      size: 70231
+      md5: c967f62a33e5174fa088b895ee5b7241
+      size: 70377
     - path: scores.json
-      md5: cdcca4a417bb0fd000eb6fcf65df1f23
+      md5: ad5de534a1a63db196e036efe9419fdc
       size: 27
